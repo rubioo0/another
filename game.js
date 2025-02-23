@@ -72,10 +72,10 @@ function moveObstacle() {
 
             setLevel();
 
-            if (score >= 20) {
+            if (score >= 24) {
                 gameOver = true;
                 showVictoryImage(); // Показати фото після перемоги
-                alert("🎉 Ви перемогли! Остаточний рахунок: " + score);
+                alert("🎉 Молодчинка! Остаточний рахунок: " + score);
                 location.reload();
             }
         }
@@ -98,7 +98,7 @@ function checkCollision() {
         playerRect.top < obstacleRect.bottom
     ) {
         gameOver = true;
-        alert("Гра закінчена! Остаточний рахунок: " + score);
+        alert("Нічого страшного! Остаточний рахунок: " + score);
         setTimeout(() => location.reload(), 2000);
     }
 }
