@@ -83,7 +83,7 @@ function moveObstacle() {
         checkCollision();
     }, 20);
 }
-
+// affed
 function checkCollision() {
     let player = document.getElementById("player");
     let obstacle = document.querySelector(".obstacle");
