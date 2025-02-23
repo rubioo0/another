@@ -1,22 +1,23 @@
 let score = 0;
 let gameOver = false;
 let level = 1;
-let obstacleSpeed = 2;
+let obstacleSpeed = 1;
 
-// Виведення повідомлення про перемогу
-function showVictoryMessage() {
-    let victoryMessage = document.createElement("div");
-    victoryMessage.style.position = "absolute";
-    victoryMessage.style.top = "50%";
-    victoryMessage.style.left = "50%";
-    victoryMessage.style.transform = "translate(-50%, -50%)";
-    victoryMessage.style.fontSize = "40px";
-    victoryMessage.style.color = "white";
-    victoryMessage.style.fontWeight = "bold";
-    victoryMessage.innerText = "🎉 You Win! Final Score: " + score;
+const victoryImageUrl = "https://example.com/your-image.jpg";
 
-    // Додаємо повідомлення на сторінк24
-    document.body.appendChild(victoryMessage);
+function setLevel() {
+    if (score >= 0 && score < 7) {
+        level = 1;
+        obstacleSpeed = 1;
+    } else if (score >= 7 && score < 14) {
+        level = 2;
+        obstacleSpeed = 1.5;
+    } else if (score >= 14) {
+        level = 3;
+        obstacleSpeed = 2;
+    }
+
+    document.getElementById("level").textContent = "Рівень: " + level;
 }
 
 document.addEventListener("keydown", function (event) {
@@ -67,12 +68,14 @@ function moveObstacle() {
         if (position < -10) {
             position = 100;
             score++;
-            scoreDisplay.textContent = "Score: " + score;
+            scoreDisplay.textContent = "Очки: " + score;
 
-            if (score >= 24) {
+            setLevel();
+
+            if (score >= 20) {
                 gameOver = true;
-                showVictoryMessage(); // Показати повідомлення після перемоги
-                alert("🎉 You Win! Final Score: " + score);
+                showVictoryImage(); // Показати фото після перемоги
+                alert("🎉 Ви перемогли! Остаточний рахунок: " + score);
                 location.reload();
             }
         }
@@ -95,9 +98,23 @@ function checkCollision() {
         playerRect.top < obstacleRect.bottom
     ) {
         gameOver = true;
-        alert("Game Over! Final Score: " + score);
-        location.reload();
+        alert("Гра закінчена! Остаточний рахунок: " + score);
+        setTimeout(() => location.reload(), 2000);
     }
+}
+
+function showVictoryImage() {
+    let img = document.createElement("img");
+    img.src = victoryImageUrl;
+    img.style.position = "fixed";
+    img.style.top = "0";
+    img.style.left = "0";
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.style.objectFit = "cover";
+    img.style.zIndex = "9999"; // Зробити зображення поверх усіх інших елементів
+
+    document.body.appendChild(img);
 }
 
 moveObstacle();
