@@ -1,0 +1,69 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: skyblue;
+}
+
+#gameContainer {
+    position: relative;
+    width: 800px;
+    height: 300px;
+    background-color: white;
+    border: 2px solid black;
+    overflow: hidden;
+}
+
+#floor {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    background-color: gray;
+}
+
+#player {
+    position: absolute;
+    bottom: 40px; /* Стоїть на підлозі */
+    left: 100px;
+    width: 50px;
+    height: 50px;
+    background-image: url('player.png');
+    background-size: cover;
+}
+
+.obstacle {
+    position: absolute;
+    bottom: 40px; /* Стоїть на підлозі */
+    right: -50px;
+    width: 50px;
+    height: 50px;
+    background-image: url('obstacle.png');
+    background-size: cover;
+    animation: moveObstacle 3s linear infinite;
+}
+
+#score {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    background: black;
+    padding: 5px 15px;
+    border-radius: 10px;
+}
+
+
+@keyframes moveObstacle {
+    from {
+        right: -50px;
+    }
+    to {
+        right: 100%;
+    }
+}
