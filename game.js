@@ -15,7 +15,7 @@ function showVictoryMessage() {
     victoryMessage.style.fontWeight = "bold";
     victoryMessage.innerText = "🎉 You Win! Final Score: " + score;
 
-    // Додаємо повідомлення на сторінку
+    // Додаємо повідомлення на сторінк24
     document.body.appendChild(victoryMessage);
 }
 
@@ -69,7 +69,7 @@ function moveObstacle() {
             score++;
             scoreDisplay.textContent = "Score: " + score;
 
-            if (score >= 1) {
+            if (score >= 24) {
                 gameOver = true;
                 showVictoryMessage(); // Показати повідомлення після перемоги
                 alert("🎉 You Win! Final Score: " + score);
